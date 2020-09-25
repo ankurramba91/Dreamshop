@@ -1,0 +1,52 @@
+{% extends 'shop/inherit.html' %}
+
+{% load static %}
+
+
+{% block title %} Dream Shop {% endblock %}
+
+{% block body %}
+
+<section class="sec1">
+
+    <!-- Pagination privious code -->
+
+    {% if product_objects.has_previous %}
+    <li class="page-item" style="list-style: none;">
+        <a href="?page={{ product_objects.previous_page_number }}">
+            < Previous</a>
+    </li>
+    {% endif %}
+
+    {% for product in product_objects %}
+    <div class="card">
+        <img src="{{product.image}}" class="img">
+        <div id="nm{{product.id}}" class="cardtitle">
+            {{product.title}}
+        </div>
+
+        <div class="cardprice">
+            &#x20B9;{{product.price}}
+        </div>
+        <div class="pbtn">
+            <a class="btncard" href="{{product.id}}"> View Item</a>
+            <button class="btncard cartt " id="{{product.id}}" href=""> Add to Cart</button>
+
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- pagination next button code if you want to show current button just use this {{ product_objects.number }} -->
+
+    {% if product_objects.has_next %}
+    <li class="page-item" style="list-style: none;">
+        <a href="?page={{ product_objects.next_page_number }}">Next ></a>
+    </li>
+    {% endif %}
+
+</section>
+
+
+
+
+{% endblock %} 

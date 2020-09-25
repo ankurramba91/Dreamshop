@@ -1,0 +1,186 @@
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.navbar{
+     display: flex;
+    position: sticky;
+    top:0;
+    cursor: pointer;
+    background-color: rgb(85, 83, 83);
+    
+}
+
+.leftnav{
+    width: 15%; 
+
+}
+.leftnav li{
+    list-style: none;
+    padding: 15px 28px;
+}
+
+.leftnav li a{
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+   
+}
+
+.leftnav li a:hover{ 
+    color: rgb(204, 161, 161);
+}
+
+
+.search{
+    width: 50%;
+    margin-top: 12px;
+}
+
+.search input{
+    width: 70%;
+    padding: 7px 18px;
+    border-radius: 8px;
+}
+
+.searchbtn{
+    padding: 5px 18px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.searchbtn:hover{ 
+    color: rgb(204, 161, 161);
+}
+
+.rightNav{
+    width: 35%;
+
+}
+.nav-list-R{
+   
+    display: flex;
+    
+}
+.nav-list-R li{
+    list-style: none;
+    padding : 0px 25px;
+    margin-top: 18px;
+    
+}
+
+.nav-list-R li a{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+   
+}
+
+.nav-list-R li a:hover{ 
+    color: rgb(204, 161, 161);
+}
+
+.sec1{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0px;
+    margin-top: 80px;
+    
+}
+
+.card{
+    border: 1px solid #eee;
+    margin: 0px 12px;
+}
+
+.img{
+
+    width: 200px; height: 200px;
+    margin-bottom: 10px;
+   
+}
+
+.cardtitle{
+    
+    margin: 6px 6px ;
+    font-weight: bold;
+}
+
+.cardprice{
+    margin: 6px 6px ;
+    color: green;
+
+}
+
+.sec1 li{
+    list-style: none;
+    
+    margin-top: 100px;
+}
+.sec1 li a{
+    text-decoration: none;
+    color: dodgerblue;
+    font-weight: bold;
+}
+.btncard{
+    background: none;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 5px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+}
+.btncard:hover{
+    color: rgb(153, 137, 137);
+}
+
+.product{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    margin: auto;
+    margin-top: 60px;
+}
+
+.productimage img{
+    width: 65%;
+    border: 2px solid #eee;
+    padding: 8px;
+}
+
+.productDetail{
+    width: 100%;
+    font-size: 20px;
+}
+
+.popover-body{
+    margin-top: 28px;
+}
+
+
+/* .arrow{
+    border: solid black;
+    border-width: 0px 5px 5px 0;
+    display: inline-block;
+    padding: 9px;
+   
+}
+
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  
+  .left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  } */

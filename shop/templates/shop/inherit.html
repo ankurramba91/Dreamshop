@@ -1,0 +1,128 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+    <title>{% block title %} {% endblock %}</title>
+</head>
+
+<body>
+    <nav class="navbar ">
+        <div class="leftnav">
+            <ul class="nav-list-L ">
+                <li><a href="/">Dream Shop</a></li>
+            </ul>
+        </div>
+
+        <form class="search">
+            <input type="text" name="search1" placeholder="Search for products,brands and more">
+            <button class="searchbtn">Search</button>
+        </form>
+
+        <div class="rightNav">
+            <ul class="nav-list-R ">
+                <li><a href="#login">Login</a></li>
+                <li><a href="#tracker">Track Orders</a></li>
+                <li><a href="#checkout">Cart</a><i id="addcart" class="fa fa-shopping-cart"
+                        style="font-size:18px;color:whitesmoke;" data-container="body" data-trigger="hover"
+                        data-toggle="popover" data-placement="bottom" data-html="true"
+                        data-content="Vivamus  lacus vel augue laoreet rutrum faucibus.">(0)</i></li>
+
+            </ul>
+
+        </div>
+    </nav>
+
+    {% block body %}
+
+    {% endblock %}
+
+    <script>
+        // console.log("Working");
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+
+        }
+        else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+        }
+        // let cartt = document.getElementById('cartt')
+        // cartt.addEventListener('click', () => {
+        //     console.log("button click done");
+        // })
+        $(document).on('click', '.cartt', function () {
+            // console.log("button click");
+            let item_id = this.id.toString();
+            console.log(item_id);
+
+            if (cart[item_id] != undefined) {
+                cart[item_id] = cart[item_id] + 1
+            }
+
+            else {
+                cart[item_id] = 1
+            }
+            // console.log(cart);
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById('addcart').innerHTML = "(" + Object.keys(cart).length + ")"
+
+        });
+        // popover funtion
+
+        // $(function () {
+        //     $('[data-toggle="popover"]').popover()
+        //     document.getElementById('addcart').setAttribute('data-content','<h5> this is cart</h5>')
+        // })
+
+
+
+    </script>
+
+    <script>
+
+        // funtion to add cart items in popover
+        Displaycart(cart);
+        function Displaycart(cart) {
+            var cartString = "";
+            cartString += "<h5> this is a cart</h5>";
+
+            var cartIndex = 1;
+            for (var x in cart) {
+                cartString += cartIndex;
+
+                // if (document.getElementById("nm" + x) !== null){
+
+                cartString += document.getElementById("nm" + x).innerHTML + "Qty:" + cart[x] + "</br>";
+                cartIndex += 1;
+                // }
+                
+
+            }
+            document.getElementById('addcart').setAttribute('data-content', cartString);
+            $('[data-toggle="popover"]').popover()
+        }
+
+
+    </script>
+
+
+
+
+</body>
+
+
+</html>

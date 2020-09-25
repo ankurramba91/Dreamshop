@@ -1,0 +1,26 @@
+{% extends 'shop/inherit.html' %}
+
+
+{% block title %} Product View Us {% endblock %}
+
+
+{% block body %}
+
+<section class="product">
+
+    <div class="productimage">
+        <img src="{{ product_object.image}}">
+    </div>
+
+    <div class="productDetail">
+        <ul>
+            <li>{{ product_object.title}}</li>
+            <li>{{ product_object.price}}</li>
+            <li>{{ product_object.discount_price}}</li>
+            <li>{{ product_object.category}}</li>
+            <li>{{ product_object.description}}</li>
+        </ul>
+    </div>
+</section>
+
+{% endblock %}
