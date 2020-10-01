@@ -16,10 +16,16 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
     <title>{% block title %} {% endblock %}</title>
 </head>
 
 <body>
+    
     <nav class="navbar ">
         <div class="leftnav">
             <ul class="nav-list-L ">
@@ -36,7 +42,7 @@
             <ul class="nav-list-R ">
                 <li><a href="#login">Login</a></li>
                 <li><a href="#tracker">Track Orders</a></li>
-                <li><a href="#checkout">Cart</a><i id="addcart" class="fa fa-shopping-cart"
+                <li><a href="/checkout">Cart</a><i id="addcart" class="fa fa-shopping-cart"
                         style="font-size:18px;color:whitesmoke;" data-container="body" data-trigger="hover"
                         data-toggle="popover" data-placement="bottom" data-html="true"
                         data-content="Vivamus  lacus vel augue laoreet rutrum faucibus.">(0)</i></li>
@@ -69,13 +75,18 @@
             console.log(item_id);
 
             if (cart[item_id] != undefined) {
-                cart[item_id] = cart[item_id] + 1
+                quatity = cart[item_id][0] + 1;
+                cart[item_id][0] = quatity;
+                cart[item_id][2] = cart[item_id][2] + parseFloat(document.getElementById('price' + item_id).innerHTML);
             }
 
             else {
-                cart[item_id] = 1
+                quatity = 1;
+                price = parseFloat(document.getElementById('price' + item_id).innerHTML);
+                name = document.getElementById("nm" + item_id).innerHTML;
+                cart[item_id] = [quatity, name, price];
             }
-            // console.log(cart);
+            console.log(cart);
 
             localStorage.setItem('cart', JSON.stringify(cart));
             document.getElementById('addcart').innerHTML = "(" + Object.keys(cart).length + ")"
@@ -98,20 +109,22 @@
         Displaycart(cart);
         function Displaycart(cart) {
             var cartString = "";
-            cartString += "<h5> this is a cart</h5>";
+            cartString += "<h5> Items in your Cart</h5>";
 
             var cartIndex = 1;
             for (var x in cart) {
                 cartString += cartIndex;
 
-                // if (document.getElementById("nm" + x) !== null){
+                // if (document.getElementById("nm" + x) !== null) {
 
-                cartString += document.getElementById("nm" + x).innerHTML + "Qty:" + cart[x] + "</br>";
-                cartIndex += 1;
+                    cartString += document.getElementById("nm" + x).innerHTML + "Qty:" + cart[x][0] + "</br>";
+                    cartIndex += 1;
                 // }
-                
+
 
             }
+
+
             document.getElementById('addcart').setAttribute('data-content', cartString);
             $('[data-toggle="popover"]').popover()
         }
@@ -120,6 +133,43 @@
     </script>
 
 
+    <!-- adding cart item to list in checkout page -->
+
+    <script type="text/javascript">
+
+        if (localStorage.getItem('cart') == null) {
+            var cart = {};
+
+        }
+        else {
+            cart = JSON.parse(localStorage.getItem('cart'));
+
+        }
+
+        let total = 0;
+        for (item in cart) {
+            let name = cart[item][1];
+            let quantity = cart[item][0];
+            let price = cart[item][2];
+            total = total + cart[item][2];
+
+            itemString = ` <li class = "list-group">Qty:${quantity} ${name}- &#x20B9;
+    ${price}</li> `
+            $('#item_list').append(itemString)
+        }
+
+        // to get the total in checkout form
+        totalPrice = ` <li class = "list-group">Your Total Price is &#x20B9;
+    ${total} </li> `
+        $('#item_list').append(totalPrice);
+        $('#total').val(total);
+
+
+
+        // to get the items in checkout form
+        $('#items').val(JSON.stringify(cart));
+
+    </script>
 
 
 </body>

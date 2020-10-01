@@ -1,1 +1,33 @@
-<h1>this is checkout page</h1>
+{% extends 'shop/inherit.html' %}
+
+
+{% block title %} CheckOut {% endblock %}
+
+
+
+{% block body %}
+
+<div class="checkout">
+    <ol id="item_list" class="list-group">
+
+    </ol>
+</div>
+
+<section class="contact" id="contact">
+    <h1 class="text-center">Fill details for Checkout</h1>
+    <form method="POST" action="" class="form">
+        {% csrf_token %}
+        <!-- // to get the items in checkout form -->
+        <input class="form-input" type="hidden" name="items" id="items" >  
+        <input class="form-input" type="text" name="name" id="name" placeholder="Enter Your name">
+        <input class="form-input" type="text" name="phone" id="phone" placeholder="Enter Your Phone">
+        <input class="form-input" type="email" name="email" id="email" placeholder="Enter Your email">
+        <textarea class="form-input" name="address" id="address" cols="2" rows="2"
+            placeholder="Enter Your Full Address"></textarea>
+        <label for="form-input">Amount to be paid</label>
+        <input class="form-input" readonly="" type="text" name="total" id="total"  >
+        <button type="submit" class="btncard">Place Order</button>
+    </form>
+</section>
+
+{% endblock %}

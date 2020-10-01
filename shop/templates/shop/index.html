@@ -7,6 +7,7 @@
 
 {% block body %}
 
+<h2 class="sec1head">{{ product_objects.0.category }}</h2>
 <section class="sec1">
 
     <!-- Pagination privious code -->
@@ -18,22 +19,20 @@
     </li>
     {% endif %}
 
+
     {% for product in product_objects %}
     <div class="card">
         <img src="{{product.image}}" class="img">
-        <div id="nm{{product.id}}" class="cardtitle">
-            {{product.title}}
-        </div>
+        <div id="nm{{product.id}}" class="cardtitle">{{product.title}}</div>
 
-        <div class="cardprice">
-            &#x20B9;{{product.price}}
-        </div>
+        <div id="price{{product.id}}" class="cardprice">{{product.price}}</div>
         <div class="pbtn">
             <a class="btncard" href="{{product.id}}"> View Item</a>
             <button class="btncard cartt " id="{{product.id}}" href=""> Add to Cart</button>
 
         </div>
     </div>
+
     {% endfor %}
 
     <!-- pagination next button code if you want to show current button just use this {{ product_objects.number }} -->
@@ -44,9 +43,8 @@
     </li>
     {% endif %}
 
-</section>
+</section> 
 
 
 
-
-{% endblock %} 
+{% endblock %}

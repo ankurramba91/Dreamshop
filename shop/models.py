@@ -14,3 +14,17 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title + "---" + self.category
+
+
+# checkout models
+
+class Contact(models.Model):
+    items = models.CharField(max_length=1000)
+    name = models.CharField(max_length=30)
+    email = models.EmailField()
+    phone = models.CharField(max_length=30)
+    address = models.TextField()
+    total = models.CharField(max_length=200)
+
+    def __str__(self): #this is used to show name in admin contact
+        return self.name+"---"+self.email
